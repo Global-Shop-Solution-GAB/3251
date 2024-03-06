@@ -1,0 +1,44 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Quote: 3301
+'Company: GKD-USA
+'Hooks 14045
+
+F.Intrinsic.Control.If(V.Caller.Hook,<>,14045)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.endif
+
+
+'Change the text of the label
+V.Passed.GAB-LBL-1.Set("Last Paid Cost")
+F.Intrinsic.UI.ChangeCallerProperty(V.Passed.GAB-LBL-1,"HIDE",0)
+F.Intrinsic.Variable.SetProperty("GAB-LBL-1","PT",9)
+F.Intrinsic.Variable.SetProperty("GAB-LBL-1","PL",755)
+'F.Intrinsic.Variable.SetProperty("GAB-LBL-1","FC",0)
+F.Intrinsic.Variable.SetProperty("GAB-LBL-1","PH",20)
+F.Intrinsic.Variable.SetProperty("GAB-LBL-1","PW",100)
+F.Intrinsic.Variable.SetProperty("GAB-LBL-1","FS",12)
+
+'Set the Text Box visible
+F.Intrinsic.UI.ChangeCallerProperty(V.Passed.GAB-TEXT-1,"HIDE",0)
+F.Intrinsic.Variable.SetProperty("GAB-TEXT-1","PT",27)
+F.Intrinsic.Variable.SetProperty("GAB-TEXT-1","PL",755)
+F.Intrinsic.Variable.SetProperty("GAB-TEXT-1","PH",16)
+F.Intrinsic.Variable.SetProperty("GAB-TEXT-1","PW",100)
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_SW3301$}$CHANDANA$}$3/16/2012
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Quote Number 3301
+Revision Number 0
+Customer Name GKD-USA, INC.
+
+Program.Sub.Comments.End
+
