@@ -1,0 +1,46 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.If(V.Caller.Hook,<,14051)
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.EndIf
+
+V.Local.sSql.Declare
+V.Local.sPart.Declare
+V.Local.sLoc.Declare
+V.Local.iLastCost.Declare(Float)
+
+V.Local.sPart.Set(V.Passed.000003)
+V.Local.sLoc.Set(V.Passed.000004)
+F.Intrinsic.String.Concat(V.Local.sPart,V.Passed.000099.Trim,V.Local.sPart)
+F.Intrinsic.String.Concat("select Top 1 cost from ITEM_HISTORY where part = '",V.local.sPart.Trim,"' and location='",V.Local.sLoc.Trim,"' and Code_Transaction='P16' order by Date_History desc",V.Local.sSql)
+F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.con!rst.EOF,=,False)
+	V.Local.iLastCost.Set(V.ODBC.con!rst.FieldVal!Cost)
+F.Intrinsic.Control.Else
+	V.Local.iLastCost.Set(0)
+F.Intrinsic.Control.EndIf
+F.ODBC.Con!rst.Close
+
+F.ODBC.Connection!con.Close
+
+V.Passed.GAB-TEXT-1.Set(V.Local.iLastCost)
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_LastPaidCost_SD.$}$CHANDANA$}$3/16/2012
+${$1$}$$}$$}$0$}$14051$}$INS500-PART-CHG-HOOK$}$3/16/2012 5:17:07 PM$}$(Program: INV500GI; Screen: INS500)
+
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Quote Number 3301
+Revision Number 0
+Customer Name GKD-USA, INC.
+
+Program.Sub.Comments.End
+
